@@ -12,7 +12,7 @@ intents.messages = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Provide the guild IDs where the slash command will appear
-GUILD_IDS = [1195734655106818069, 1229526612140363817]  # Replace with your actual guild IDs
+GUILD_IDS = []  # Replace with your actual guild IDs
 
 @bot.event
 async def on_ready():
@@ -39,16 +39,13 @@ async def on_message(message):
         await message.channel.send("no")
 
     elif "да" in msg:
-        await message.channel.send("пизда")
+        await message.channel.send("test")
 
     elif "xd" in msg:
-        await message.channel.send("kys")
+        await message.channel.send("real")
 
     elif "hi" in msg or "hai" in msg or "hello" in msg or "sup" in msg or "hey" in msg:
-        await message.channel.send("HEWWO UWU~~~")
-
-    elif "kys" in msg:
-        await message.channel.send("Keep yo dreams to yourself le bro bro")
+        await message.channel.send("helo xd")
     elif "niceguy" in msg:
         await message.channel.send("leave him alone :sob:")
     #Важно для работы команд!! 
@@ -81,7 +78,7 @@ async def repeat(ctx, times: int, content='repeating...'):
 async def repeat_error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
         remaining_time = round(error.retry_after)
-        await ctx.respond(f"stop spamming mf. wait like {remaining_time} seconds")#, ephemeral = True)
+        await ctx.respond(f"stop spamming mf. wait like {remaining_time} seconds")#, ephemeral = True)           note for self: you can delete the # to make it ephemeral, aka only show to the person activating the command
 
 #generator of passwords
 @bot.slash_command(
@@ -112,7 +109,7 @@ async def urban_dictionary(ctx, term):
         if data['list']:
             top_definition = data['list'][0]['definition']
             example = data['list'][0]['example']
-            await ctx.respond(f"**Definition:** {top_definition}\n**Example:** {example}")#, ephemeral=True)
+            await ctx.respond(f"**Definition:** {top_definition}\n**Example:** {example}")#, ephemeral=True)  note for self: you can delete the # to make it ephemeral, aka only show to the person activating the command
         else:
             await ctx.respond("No definition found.", ephemeral=True)
     else:
@@ -128,22 +125,22 @@ async def bait(ctx):
     def check(message):
         return message.author == ctx.author and message.channel == ctx.channel
 
-    options = ["bait", "mental retardation"]
+    options = ["bait", "mental"]
     try:
         response = await bot.wait_for('message', check=check, timeout=10)  # Wait for user response
         choice = response.content.lower()
         #bait
         if choice == "bait":
-            await ctx.respond("Look, this nigga took the bait, laugh at him everyone :joy: :joy: :joy: :skull: :skull: :skull:")
+            await ctx.respond("Look, this bloke took the bait, laugh at him everyone :joy: :joy: :joy: :skull: :skull: :skull:")
         #MR
-        elif choice == "mental retardation":
-            await ctx.respond("brain tumore victim :skull:. its terminal :joy:")
+        elif choice == "mental":
+            await ctx.respond("my boy is mental")
             
             #error
         else:
-            await ctx.respond("Learn how to type nga (u prob made a typo)")
+            await ctx.respond("Learn how to type bro (u prob made a typo)")
     except asyncio.TimeoutError:
-        await ctx.respond("Slow ass retard")
+        await ctx.respond("Slow ass")
 
 @bot.slash_command(
         name = "fox",
